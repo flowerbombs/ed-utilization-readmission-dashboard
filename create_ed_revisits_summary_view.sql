@@ -1,9 +1,9 @@
 #Author: Keri W. 
 #Date: 08 January 2026
 
-#Creates a base table (view) with columns from ED_Stays using a self join. MIN is used to create column 
-next_ed_intime, DATEDIFF is used to create column days_to_next_ed_visit, and COUNT is used to create column 
-total_future_ed_visits. 
+#Creates a base table (view) of Emergency Department revisit behavior. The view uses a self join of ED_Stays
+table that evaluates future visits for the same patient. MIN is used to create column next_ed_intime, DATEDIFF 
+is used to create column days_to_next_ed_visit, and COUNT is used to create column total_future_ed_visits. 
 CREATE VIEW ED_Revisits_Summary AS
 SELECT
     ED_Stays_1.stay_id AS first_stay_id,
