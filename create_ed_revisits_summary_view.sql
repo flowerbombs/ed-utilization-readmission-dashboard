@@ -39,7 +39,6 @@ ED_Stays_1.outtime and the earliest subsequent ED visit (MIN(ED_Stays_2.intime))
 revisit flag (revisit_72hr_flag). DATEDIFF(DAY) is used with the same fields to derive a 7-day ED revisit 
 flag(revisit_7day_flag). Both flags are binary indicators (0/1) based on whether the next ED visit occurs 
 within the specified time window.
-
 CREATE OR ALTER VIEW ED_Revisits_Summary AS
 SELECT
     ED_Stays_1.stay_id AS first_stay_id,
