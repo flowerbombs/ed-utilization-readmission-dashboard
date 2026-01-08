@@ -18,3 +18,11 @@ SELECT
 FROM ED_Stays
 LEFT JOIN Triage_Assessments
 	ON ED_Stays.stay_id = Triage_Assessments.stay_id;
+
+#Selecting top 20 rows to inspect new view, ED_Stays_Summary
+SELECT TOP 20*
+FROM ED_Stays_Summary;
+
+#Counting total rows from ED_Stays_Summary view 
+SELECT COUNT(*) AS total_rows
+FROM ED_Stays_Summary;
