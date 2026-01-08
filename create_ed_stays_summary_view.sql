@@ -3,7 +3,6 @@
 
 #Creates a base table (view) with columns from ED_Stays and Triage_Assesments using a 
 left join. DATEDIFF is used to create column ed_los_minutes from intime and outtime. 
-
 CREATE VIEW ED_STAYS_SUMMARY AS
 SELECT
 	ED_Stays.stay_id,
@@ -26,3 +25,13 @@ FROM ED_Stays_Summary;
 #Counting total rows from ED_Stays_Summary view 
 SELECT COUNT(*) AS total_rows
 FROM ED_Stays_Summary;
+
+#Null count for columns acuity, pain_score, and ed_los for ED_Stays_Summary view
+SELECT
+    SUM(CASE WHEN acuity IS NULL THEN 1 ELSE 0 END) AS null_acuity,
+    SUM(CASE WHEN pain_score IS NULL THEN 1 ELSE 0 END) AS null_pain_score,
+    SUM(CASE WHEN ed_los_minutes IS NULL THEN 1 ELSE 0 END) AS null_ed_los
+FROM ED_Stays_Summary;
+
+
+
