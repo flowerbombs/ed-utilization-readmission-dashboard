@@ -86,3 +86,29 @@ GROUP BY
     ED_Stays_1.intime,
     ED_Stays_1.outtime,
     ED_Stays_1.disposition;
+
+#Selecting column, revisit_72hr_flag, from ED_Revisits_Summary view to count the binary values. Output 
+included.
+SELECT
+    revisit_72hr_flag,
+    COUNT(*) AS visit_count
+FROM ED_Revisits_Summary
+GROUP BY
+    revisit_72hr_flag;
+
+#revisit_72hr_flag   visit_count
+0                     68842
+1                       94
+    
+#Selecting column, revisit_7day_flag, from ED_Revisits_Summary view to count the binary values. Output 
+included.
+SELECT
+    revisit_7day_flag,
+    COUNT(*) AS visit_count
+FROM ED_Revisits_Summary
+GROUP BY
+    revisit_7day_flag;
+
+revisit_7day_flag    visit_count
+0                      68258
+1                       678
