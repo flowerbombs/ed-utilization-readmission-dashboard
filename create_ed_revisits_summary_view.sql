@@ -112,3 +112,15 @@ GROUP BY
 revisit_7day_flag    visit_count
 0                      68258
 1                       678
+
+#ED_Revisits_Summary view row count
+SELECT COUNT(*) AS total_ed_visits
+FROM ED_Revisits_Summary;
+
+#Checking For Impossible Values. This selects all rows from ED_Revisits_Summary where there is a 72 hour
+flag and no 7 day revisit. 
+SELECT *
+FROM ED_Revisits_Summary
+WHERE revisit_72hr_flag = 1
+  AND revisit_7day_flag = 0;
+
