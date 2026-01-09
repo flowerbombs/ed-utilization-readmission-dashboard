@@ -124,3 +124,15 @@ FROM ED_Revisits_Summary
 WHERE revisit_72hr_flag = 1
   AND revisit_7day_flag = 0;
 
+#Selecting column days_to_next_ed_visit from ED_Revisits_Summary to obtain frequncy counts on each value 
+that is not null. 
+SELECT
+    days_to_next_ed_visit,
+    COUNT(*) AS visit_count
+FROM ED_Revisits_Summary
+WHERE days_to_next_ed_visit IS NOT NULL
+GROUP BY
+    days_to_next_ed_visit
+ORDER BY
+    days_to_next_ed_visit;
+
