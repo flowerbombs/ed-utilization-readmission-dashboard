@@ -1,3 +1,7 @@
+#Author: Keri W.
+
+#Date: 12 January 2026
+  
 #Create ED_Encounter_Analytics view by using a left join on views ED_Stays_Summary, ED_Revisits_Summary, and ED_Primary_Diagnosis on primary key
 stay_id. ED_Encounter_Analytics represents one row per ED stay, enriched with revisit metrics and primary diagnosis information when available,
 and is intended for analytics and dashboard reporting. 
