@@ -42,3 +42,43 @@ SELECT
 FROM ED_Stays_Summary 
 LEFT JOIN  ED_Revisits_Summary ON ED_Stays_Summary.stay_id =  ED_Revisits_Summary.stay_id
 LEFT JOIN  ED_Primary_Diagnosis_Summary ON ED_Stays_Summary.stay_id = ED_Primary_Diagnosis_Summary.stay_id;
+
+#Counting total rows for data validation with output included. 
+SELECT
+	COUNT(*) AS total_rows
+FROM ED_Revisits_Summary;
+
+total_rows
+68936
+
+#Checking all columns in ED_Encounter_Analytics for nulls to compare nulls before database creation with output included. 
+DECLARE @sql NVARCHAR(MAX) = N'';
+SELECT @sql = STRING_AGG(
+    'SUM(CASE WHEN ' + QUOTENAME(COLUMN_NAME) + ' IS NULL THEN 1 ELSE 0 END) AS ' + QUOTENAME('null_' + COLUMN_NAME),
+    ', '
+)
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'ED_Encounter_Analytics';
+
+SET @sql = 'SELECT COUNT(*) AS total_rows, ' + @sql + ' FROM ED_Encounter_Analytics;';
+EXEC sp_executesql @sql;
+
+null_temperature	null_triage_heart_rate	null_respiratory_rate	null_oxygen_saturation	null_systolic_bp	null_diastolic_bp	null_pain	
+6661	               5234	                       5970	                    5986	               5390	               5542	           3635	
+null_next_ed_intime	       null_days_to_next_ed_visit        null_pain_score    
+47101                                 47101                       6708
+null_acuity            total_rows
+2098                     68936
+
+#Comparing five specific stay_id's from ED_Stays and ED_Encounter_Analytics for data validation. 
+SELECT*
+FROM ED_Stays
+WHERE stay_id = 30000012 OR stay_id = 38112554 OR 
+stay_id = 32642808 OR stay_id = 38221815 OR stay_id
+= 35217179;
+
+SELECT*
+FROM ED_Encounter_Analytics
+WHERE stay_id = 30000012 OR stay_id = 38112554 OR 
+stay_id = 32642808 OR stay_id = 38221815 OR stay_id
+= 35217179;
