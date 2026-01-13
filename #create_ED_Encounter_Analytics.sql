@@ -1,5 +1,4 @@
 #Author: Keri W.
-
 #Date: 12 January 2026
   
 #Create ED_Encounter_Analytics view by using a left join on views ED_Stays_Summary, ED_Revisits_Summary, and ED_Primary_Diagnosis on primary key
